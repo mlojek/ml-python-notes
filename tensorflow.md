@@ -15,7 +15,8 @@ tf.config.experimental.set_memory_growth(physical_devices[0], True)
 ## Tensors:
 a tensor is...
 
-indexed like a list, [:::]
+Indexing a tensor: like an array
+indexed like a list, [::]
 tf.gather(x, [indices])
 
 ### Initializing tensors:
@@ -47,15 +48,13 @@ x = x.astype('type')
 ```python
 # add/subtract/multiply/divide element-wise (respective elements from each tensor):
 z = tf.add(x, y)
-z = x + y
-
 z = tf.subtract(x, y)
-z = x - y
-
 z = tf.multiply(x, y)
-z = x * y
-
 z = tf.divide(x, y)
+
+z = x + y
+z = x - y
+z = x * y
 z = x / y
 
 # exponentiate all elements:
@@ -73,9 +72,6 @@ z = x @ y
 
 ```
 
-### Indexing a tensor:
-like an array
-
 ### Reshaping a tensor:
 ```python
 x = tf.reshape(x, tuple)
@@ -90,9 +86,7 @@ perm - new order of the indices
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-```
 
-```python
 # import handwritten digits dataset
 from tensorflow.keras.datasets import mnist
 
@@ -111,7 +105,7 @@ x_train = x_train / 255.0
 x_test = x_test / 255.0
 ```
 
-## Creating a sequential model:
+## Creating a sequential model (keras sequential API):
 ```python
 # make a sequential model:
 model = keras.Sequential(
@@ -145,3 +139,4 @@ model.evaluate(x_test, y_test, batch_size=32, verbose=2)
 model = keras.Sequential()
 model.add(layer)
 ```
+## Creating a functional model (keras functional API):
