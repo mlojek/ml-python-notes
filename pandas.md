@@ -13,13 +13,14 @@ df - dataframe
 ```python
 # read a CSV file:
 df = pd.read_csv(path.csv)
-df = pd.read_csv(path.csv, delimiter=char)
+df = pd.read_csv(path.csv, delimiter='\t')
 
 # if the file is really big, read it in chunks:
-for df in pd.read_csv(path, chunsize=int):
+for df in pd.read_csv(path, chunksize=1000):
 
 # save to csv:
-df.to_csv(path, [separator='char'])
+df.to_csv(path)
+df.to_csv(path, separator=';')
 
 # read from/save to an excel file:
 df = pd.read_excel(path.xlsx)
@@ -46,17 +47,17 @@ df.iloc[int]
 df.iloc[row, col]
 ```
 
-### Iterating row by row:
+## Iterating row by row:
 ```python
 for index, row in df.iterrows():
 # index - row index
 # row - data
 ```
 
-### Conditional selection:
+## Conditional selection:
 ```python
 # select rows based on a condition:
-df.loc(condition) - only rows for which the condition is true
+df.loc(condition)
 df.loc(df['col_name'] == value)
 
 # joining contitions:
@@ -70,26 +71,32 @@ df.sort_values(str/list)
 df.sort_values(str/list, ascending=bool/list)
 
 df.sort_values('col_name')
-df.sort_values(['col0', 'col1'])
 df.sort_values('col_name', ascending=False)
+
+df.sort_values(['col0', 'col1'])
 df.sort_values(['col0', 'col1'], ascending=[False, True])
 ```
 
-CHANGING DATA
+## Modifying data:
 df['new_col'] = df['othercol'] + 2 - add new column based on other columns' values
 df = df.drop(colums=[]) - drop columns
-df.sum(axis=1) - sum for every row
 df = df[[colums]] - reorder by columns
 df = df.reset_index() - add new index
 df = df.reset_index(drop=True) - add new index, drop the old index
 df.reset_index(inplace=True)
 
-CONDITIONAL CHANGES
+## Conditional modification:
 df.loc[df['col'] == val, 'col'] = 'new_val' - change value of col where it has a specified value
 We can also change a different column while keeping the same condition
 df.loc[df['col'] == val, 'other_col'] = 'new_other_col_val'
 Also we can change multiple columns at onece
 df.loc[condition, [columns]] = [new_values]
+
+
+
+df.sum(axis=1) - sum for every row
+
+
 ## Grouping data:
 df.groupby([column(s)]).mean()
 
