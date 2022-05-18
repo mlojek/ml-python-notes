@@ -6,8 +6,10 @@ import pandas as pd
 
 # create a new dataframe:
 df = pd.DataFrame(columns=[])
+
+# concatenate dataframes (must have same columns):
+df = pd.concat([dataframe0, dataframe1, ...])
 ```
-df - dataframe
 
 ## Reading/saving data from/to file
 ```python
@@ -126,5 +128,3 @@ df.max()
 df.min()
 df.std()
 ```
-
-df = pd.concat([dataframe0, dataframe1, ...])
