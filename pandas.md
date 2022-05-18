@@ -1,6 +1,5 @@
 # pandas
 https://youtu.be/vmEHCJofslg  
-
 ```python
 import pandas as pd
 ```
@@ -8,36 +7,48 @@ df - dataframe
 
 ## Reading/saving data from/to file
 ```python
+# read a CSV file:
 df = pd.read_csv(path.csv)
 df = pd.read_csv(path.csv, delimiter=char)
 
+# if the file is really big, read it in chunks:
 for df in pd.read_csv(path, chunsize=int):
 
+# save to csv:
 df.to_csv(path, [separator='char'])
 
+# read from/save to an excel file:
 df = pd.read_excel(path.xlsx)
-
 df.to_excel(path)
 ```
 
-## Accessing data
+## Accessing data:
 ```python
+# read first/last n rows:
 df.head(n) - first n rows
 df.tail(n) - last n rows
+
+# 
 df.columns - list of column names
-df.col_name OR df['col_name'] - get a specific column
-df[['col0', 'col1']] - get more than one column - df[list]
+df.col_name OR df[str/list] - get a specific column(s)
+
 df.iloc[int] - integer location, access a scpecific row, you can use a range [i:j]
 df.iloc[row_no, col_no] - access a single datum/'cell'
 ```
 
+### Iterating row by row:
+```
 for index, row in df.iterrows():
 index - row index
 row - data
+```
 
+### Conditional selection:
+```
 df.loc(condition) - only rows for which the condition is true
 df.loc(df['col_name'] == value)
 df.loc((condition0) & (condition1) | (condition2))
+```
 
 ## Sorting 
 df.sort_values('col_name')
