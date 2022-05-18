@@ -28,33 +28,46 @@ df.to_excel(path)
 df.head(n) - first n rows
 df.tail(n) - last n rows
 
-# 
+# read columns only:
 df.columns - list of column names
 df.col_name OR df[str/list] - get a specific column(s)
 
-df.iloc[int] - integer location, access a scpecific row, you can use a range [i:j]
-df.iloc[row_no, col_no] - access a single datum/'cell'
+# integer location, access a scpecific row, a range [i:j:k] can be used
+df.iloc[int]
+
+# access a single datum
+df.iloc[row, col]
 ```
 
 ### Iterating row by row:
-```
+```python
 for index, row in df.iterrows():
-index - row index
-row - data
+# index - row index
+# row - data
 ```
 
 ### Conditional selection:
-```
+```python
+# select rows based on a condition:
 df.loc(condition) - only rows for which the condition is true
 df.loc(df['col_name'] == value)
+
+# joining contitions:
 df.loc((condition0) & (condition1) | (condition2))
 ```
 
-## Sorting 
+## Sorting data: 
+```python
+# sort by column(s):
+df.sort_values(str/list)
+df.sort_values(str/list, ascending=bool/list)
+
 df.sort_values('col_name')
 df.sort_values(['col0', 'col1'])
 df.sort_values('col_name', ascending=False)
 df.sort_values([columns], ascending=[False, True, False...])
+```
+
 CHANGING DATA
 df['new_col'] = df['othercol'] + 2 - add new column based on other columns' values
 df = df.drop(colums=[]) - drop columns
@@ -78,6 +91,6 @@ df.groupby([column(s)]).mean()
 .min()
 .std()
 df.groupby(['column']).count()['count'] - super useful?
-READ A BIG FILE IN CHUNKS
+
 new_df = pd.DataFrame(columns=[])
 df = pd.concat([dataframe0, dataframe1, ...])
