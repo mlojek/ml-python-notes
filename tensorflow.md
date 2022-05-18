@@ -47,28 +47,28 @@ x = x.astype('type')
 ### Mathematical operations on tensors: 
 ```python
 # add/subtract/multiply/divide element-wise (respective elements from each tensor):
-z = tf.add(x, y)
-z = tf.subtract(x, y)
-z = tf.multiply(x, y)
-z = tf.divide(x, y)
+x = tf.add(x, y)
+x = tf.subtract(x, y)
+x = tf.multiply(x, y)
+x = tf.divide(x, y)
 
-z = x + y
-z = x - y
-z = x * y
-z = x / y
+x = x + y
+x = x - y
+x = x * y
+x = x / y
 
 # exponentiate all elements:
-z = x ** 2
+x = x ** 2
 
 # dot product (sum of element-wise multiplication):
-z = tf.tensordot(x, y, axes=1)
+x = tf.tensordot(x, y, axes=1)
 
 # other way of calculating dot product:
-z = tf.reduce_sum(x*y, axis=0)
+x = tf.reduce_sum(x*y, axis=0)
 
 # matrix multiplication:
-z = tf.matmul(x, y)
-z = x @ y
+x = tf.matmul(x, y)
+x = x @ y
 
 ```
 
