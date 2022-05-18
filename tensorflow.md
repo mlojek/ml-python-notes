@@ -24,7 +24,7 @@ x = tf.constant(int/list, shape=tuple, dtype=type)
 x = tf.constant(4)
 x = tf.constant([[1, 2, 3], [4, 5, 6]])
 types:
-tf.float32/float64/int32/int64
+tf.float32/float64/int32/int64/bool
 float32 is the most common
 also 8 and 16 exist, and float16 is sometimes used
 
@@ -41,6 +41,7 @@ delta is the step
 
 cast vector to type:
 x = tf.cast(x, dtype)
+x = x.astype('type')
 
 ### Mathematical operations on tensors: 
 ```python
@@ -82,7 +83,27 @@ x = tf.reshape(x, tuple)
 # transposing a tensor (works for more > 2 dimensions as well):
 x = tf.transpose(x, perm=[1, 0])
 perm - new order of the indices
+```
 
+## Neural networks:
+```python
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+```
 
+```python
+# import handwritten digits dataset
+from tensorflow.keras.datasets import mnist
 
+# get the data:
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# reshape input data:
+# leave the first dimension unchanged, then flatten (28, 28) to (784):
+x_train = x_train.reshape(-1, 784)
+# optionally change f64 to f32 to ease computation:
+x_train = x_train.astype("float32")
+# normalize the values:
+x_train = x_train / 255.0
 ```
