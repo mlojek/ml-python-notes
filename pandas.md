@@ -97,12 +97,12 @@ df['new_col'] = df['other_col'] * 2
 ```
 
 ## Conditional modification:
-df.loc[df['col'] == val, 'col'] = 'new_val' - change value of col where it has a specified value
-We can also change a different column while keeping the same condition
-df.loc[df['col'] == val, 'other_col'] = 'new_other_col_val'
-Also we can change multiple columns at onece
+```python
+# modify rows where a condition is met:
 df.loc[condition, [columns]] = [new_values]
 
+df.loc[df['col0'] == val, 'col1'] = new_val
+```
 
 
 df.sum(axis=1) - sum for every row
