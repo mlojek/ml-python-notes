@@ -78,12 +78,23 @@ df.sort_values(['col0', 'col1'], ascending=[False, True])
 ```
 
 ## Modifying data:
-df['new_col'] = df['othercol'] + 2 - add new column based on other columns' values
-df = df.drop(colums=[]) - drop columns
-df = df[[colums]] - reorder by columns
-df = df.reset_index() - add new index
-df = df.reset_index(drop=True) - add new index, drop the old index
+```python
+# drop columns:
+df = df.drop(colums=[])
+
+# reorder columns:
+df = df[[new_columns_order]]
+
+# add new index:
+df = df.reset_index()
 df.reset_index(inplace=True)
+
+# reset index (add new, drop the old):
+df = df.reset_index(drop=True)
+
+# add a new column:
+df['new_col'] = df['other_col'] * 2
+```
 
 ## Conditional modification:
 df.loc[df['col'] == val, 'col'] = 'new_val' - change value of col where it has a specified value
