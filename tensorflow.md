@@ -15,6 +15,9 @@ tf.config.experimental.set_memory_growth(physical_devices[0], True)
 ## Tensors:
 a tensor is...
 
+indexed like a list, [:::]
+tf.gather(x, [indices])
+
 ### Initializing tensors:
 scalar tensor of constant value
 x = tf.constant(int/list, shape=tuple, dtype=type)
@@ -70,5 +73,16 @@ z = x @ y
 ```
 
 ### Indexing a tensor:
+like an array
 
 ### Reshaping a tensor:
+```python
+x = tf.reshape(x, tuple)
+
+# transposing a tensor (works for more > 2 dimensions as well):
+x = tf.transpose(x, perm=[1, 0])
+perm - new order of the indices
+
+
+
+```
