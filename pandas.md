@@ -30,8 +30,8 @@ df.to_excel(path)
 ## Accessing data:
 ```python
 # read first/last n rows:
-df.head(n) - first n rows
-df.tail(n) - last n rows
+df.head(n)
+df.tail(n)
 
 # list columns:
 df.columns
@@ -56,11 +56,11 @@ for index, row in df.iterrows():
 
 ## Conditional selection:
 ```python
-# select rows based on a condition:
+# select all rows that meet a condition:
 df.loc(condition)
 df.loc(df['col_name'] == value)
 
-# joining contitions:
+# combining contitions:
 df.loc((condition0) & (condition1) | (condition2))
 ```
 
