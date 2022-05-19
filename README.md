@@ -21,6 +21,4 @@ from tensorflow import keras
 ```
 
 Keras is a module for creating neural networks, and it's build into tensorflow.
-- sequential models
-- functional models
 
