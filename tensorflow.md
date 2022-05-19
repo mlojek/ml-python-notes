@@ -1,4 +1,6 @@
 # tensorflow
+https://youtube.com/playlist?list=PLhhyoLH6IjfxVOdVC1P1L5z5azs0XjMsb
+
 ```python
 import tensorflow as tf
 
@@ -110,7 +112,7 @@ x_test = x_test / 255.0
 # make a sequential model:
 model = keras.Sequential(
     [
-        keras.Input(shape=tuple)
+        keras.Input(shape=tuple),
         layers.Dense(512, activation='relu'),
         layers.Dense(256, activation='relu'),
         layers.Dense(10),
@@ -140,3 +142,38 @@ model = keras.Sequential()
 model.add(layer)
 ```
 ## Creating a functional model (keras functional API):
+Every layer is a function, that stores the previous layer.
+Works kinda recursive.
+
+```python
+inputs = keras.Input(shape=(784))
+x = layers.Dense(512, activation='relu')(inputs)
+x = layers.Dense(512, activation='relu')(x)
+outputs = layers.Dense(10, activation='softmax')(x)
+
+model = keras.Model(inputs=inputs, outputs=outputs)
+
+# Then compile and do stuff
+```
+
+layers can be named with name='str'
+
+### Get layer's outputs:
+model.layers[-1] - get last layer
+model.layers[0] - get first layer
+
+outputs for every layer:
+to get predictions do layer_outputs[-1]
+layer_outputs = model.predict(x_test)
+
+layer_object.output - access layer's outputs
+model.get_layer('name')
+
+### saving/reading file from/ti file:
+model_obj.save(path)
+model = keras.models.load_model(path)
+
+### optimizers:
+adam
+gradient descent
+RESEARCH!
