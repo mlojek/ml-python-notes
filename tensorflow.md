@@ -1,5 +1,5 @@
 # tensorflow
-https://youtube.com/playlist?list=PLhhyoLH6IjfxVOdVC1P1L5z5azs0XjMsb
+Great tutorial playlist I used: https://youtube.com/playlist?list=PLhhyoLH6IjfxVOdVC1P1L5z5azs0XjMsb
 
 ```python
 import tensorflow as tf
@@ -7,46 +7,48 @@ import tensorflow as tf
 # to silence annoying tf logs:
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-```
 
-
+# in case of any errors:
 physical_devices = tf.config.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
-
+```
 
 ## Tensors:
-a tensor is...
+A tensor is an n-dimensional array stored in and handled by the GPU. It can be addressed like a python list with [ ], slicing with [::] also works.
 
-Indexing a tensor: like an array
-indexed like a list, [::]
-tf.gather(x, [indices])
+## Data types (dtype):
+`tf.float8/16/32/64`  
+`tf.int8/16/32/64`  
+`tf.bool`  
+  
+It's best to use float16/32 for the best performance.
 
-### Initializing tensors:
-scalar tensor of constant value
+## Creating tensors:
+```python
+# initialize a tensor:
 x = tf.constant(int/list, shape=tuple, dtype=type)
-x = tf.constant(4)
+x = tf.constant(4, shape=(1), dtype=tf.float16)
 x = tf.constant([[1, 2, 3], [4, 5, 6]])
-types:
-tf.float32/float64/int32/int64/bool
-float32 is the most common
-also 8 and 16 exist, and float16 is sometimes used
 
-x = tf.ones(tuple)
-x = tf.zeros
-x = tf.eye(int) - identity matrix (1 on diagonal, 0 rest)
-in all above you can use dtype= as well
+# homogenous tensors:
+x = tf.ones(tuple, dtype=type)
+x = tf.zeros(tuple, dtype=type)
 
+# identity matrix (1 on the diagonal, 0 everywhere else):
+x = tf.eye(int)
+
+# tensors of random values:
 x = tf.random.normal(tuple, mean=float, stddev=float)
 x = tf.random.uniform(tuple, minval=float, maxval=float)
-x = tf.range(int) - [0, 1 ... int]
-x = tf.range(start=float, limit=int, delta=int)
-delta is the step
 
-cast vector to type:
-x = tf.cast(x, dtype)
-x = x.astype('type')
+# tensor of a range (0 to int-1):
+x = tf.range(int)
 
-### Mathematical operations on tensors: 
+# other range (start to limit-1, step of delta):
+x = tf.range(start=int, limit=int, delta=int)
+```
+
+## Mathematical operations on tensors: 
 ```python
 # add/subtract/multiply/divide element-wise (respective elements from each tensor):
 x = tf.add(x, y)
@@ -74,11 +76,16 @@ x = x @ y
 
 ```
 
-### Reshaping a tensor:
+## Manipulating a tensor:
 ```python
+# reshape:
 x = tf.reshape(x, tuple)
 
-# transposing a tensor (works for more > 2 dimensions as well):
+# transposing a tensor (works for more > 2 dimensions as well)
+# perm is the new order of dimensions:
 x = tf.transpose(x, perm=[1, 0])
-perm - new order of the indices
+
+# cast to another type:
+x = tf.cast(x, dtype)
+x = x.astype('dtype')
 ```
