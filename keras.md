@@ -43,16 +43,20 @@ model = keras.Model(input_layer, output_layer)
 ```
 
 ### activation functions:
-TL;DR:
-- ALWAYS use an activation function
+```python
+keras.layers.Dense(10, activation=keras.activations.function_name)
+# or
+keras.layers.Dense(10, activation='function_name')
+```
+
 - for hidden layers use relu for fastest learning
 - for output layer use:
-    - no activation if approximating a function
-    - tanh/sigmoid if output 0/1
-    - softmax for probability distribution (like mnist)
+    - no activation for approximating a function
+    - tanh/sigmoid for output in range 0-1
+    - softmax for classification
 
-FULL list:
-- default - no activation function
+Functions:
+- (default) - no activation function
 - relu
 - sigmoid
 - softmax - probability distribution
@@ -65,8 +69,8 @@ FULL list:
 
 
 ## Compile stage:
+In compile stage, we give the model information on how to train:
 ```python
-# training setup:
 model.compile(
     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     optimizer=keras.optimizers.Adam(learning_rate=0.001),
@@ -75,24 +79,28 @@ model.compile(
 
 ```
 ### loss functions:
-PROBABILISTIC:
-| function name          | net output           | true output         |
-|------------------------|-----------------------------|-------------------------|
-| BinaryCrossentropy     | one float between 0 and 1   | one int 0/1             |
-| CategoricalCrossentropy | 
-| SparseCategoricalCrossentropy | 
-| Poisson
-| KLDivergence
+Probabilistic:
+- BinaryCrossentropy
+    - when dealing with true/false classification
+    - 1 net output
+    - true/expected value is either 0 or 1
+- CategoricalCrossentropy
+    - when dealing with classification with 2 or more classes
+    - n net outputs
+    - true/expected value as a 'one_hot': array of 0s of length n, with a 1 for the correct class
+- SparseCategoricalCrossentropy
+    - the same as CategoricalCrossentropy, but with true as just an index (int)
+- Poisson
+- KLDivergence
 
 Regression:
-
-MeanSquaredError class
-MeanAbsoluteError class
-MeanAbsolutePercentageError class
-MeanSquaredLogarithmicError class
-CosineSimilarity class
-Huber
-LogCosh
+- MeanSquaredError
+- MeanAbsoluteError
+- MeanAbsolutePercentageError
+- MeanSquaredLogarithmicError
+- CosineSimilarity
+- Huber
+- LogCosh
 
 ### optimizers:
 TL;DR use Adam for the best performance  
@@ -106,25 +114,19 @@ TL;DR use Adam for the best performance
 - Nadam
 - Ftrl
 
-
 ## Running the net:
 ```python
 # print info about net structure:
 model.summary()
 
 # train the net:
-# batch size
 model.fit(x_train, y_train, epochs=10)
 
 # evaluate the net:
 model.evaluate(x_test, y_test)
-```
 
-
-## Get net's outputs:
-```python
-# get net outputs for every test case:
-outputs = model.predict(x_test)
+# get net predictions (raw outputs):
+predictions = model.predict(x_test)
 ```
 
 ## Saving/reading a model to/from a file:
