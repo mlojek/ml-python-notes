@@ -32,7 +32,7 @@ model = keras.Sequential(
 # specify other aspects of the model:
 model.compile(
     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-    optimizer=keras.optimizers.Adam(lr=0.001),
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),
     metrics=['accuracy'],
 )
 
@@ -40,7 +40,7 @@ model.compile(
 model.summary()
 
 # train the net:
-model.fit(x_train, y_train, epochs=10)
+model.fit(x_train, y_train, epochs=100)
 
 # evaluate the net:
 model.evaluate(x_test, y_test)

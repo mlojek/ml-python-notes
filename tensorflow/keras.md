@@ -140,10 +140,10 @@ model = keras.models.load_model(path.h5)
 ```
 
 
+
+
 ## Mnist dataset:
-
 ```python
-
 # import handwritten digits dataset
 from tensorflow.keras.datasets import mnist
 
