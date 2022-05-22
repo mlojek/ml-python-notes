@@ -23,9 +23,9 @@ x_test = x_test / 255.0
 model = keras.Sequential(
     [
         keras.Input(shape=(784)),
-        layers.Dense(512, activation='relu'),
-        layers.Dense(256, activation='relu'),
-        layers.Dense(10),
+        layers.Dense(512, activation=keras.activations.relu),
+        layers.Dense(256, activation=keras.activations.relu),
+        layers.Dense(10, activation=keras.activations.softmax),
     ]
 )
 
@@ -40,7 +40,7 @@ model.compile(
 model.summary()
 
 # train the net:
-model.fit(x_train, y_train, batch_size=32, epochs=10, verbose=2)
+model.fit(x_train, y_train, epochs=10)
 
 # evaluate the net:
-model.evaluate(x_test, y_test, batch_size=32, verbose=2)
+model.evaluate(x_test, y_test)
