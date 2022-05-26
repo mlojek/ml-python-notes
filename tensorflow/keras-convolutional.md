@@ -3,6 +3,12 @@ computer vision
 https://youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF
 watch before attempting to understand this document
 
+## Layers:
+```python
+# flatten a multi-dimensional input to a linear output:
+keras.layers.Flatten()
+```
+
 ### CIFAR-10
 ```python
 import tensorflow as tf
