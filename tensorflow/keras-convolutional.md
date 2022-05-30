@@ -1,12 +1,32 @@
 # Keras convolutional neural networks
 computer vision  
 https://youtube.com/playlist?list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF
-watch before attempting to understand this document
+watch first 11 episodes before attempting to understand this document
 
 ## Layers:
 ```python
 # flatten a multi-dimensional input to a linear output:
 keras.layers.Flatten()
+
+# 2D convolutional layer:
+# filters - no of filters/output channels
+# padding - "valid"==no padding, "same"==when strides=1 output same size as input
+tf.keras.layers.Conv2D(
+    filters,
+    kernel_size,
+    strides=(1, 1),
+    padding="valid",
+    activation='relu'
+) 
+
+# Max/Average Pooling layer:
+# Padding same means equal size input and output
+# default (2, 2), (2, 2) - output 2 times smaller in both dimensions
+tf.keras.layers.MaxPooling2D(
+    pool_size=(2, 2),
+    strides=None,
+    padding="valid"
+)
 ```
 
 ### CIFAR-10
@@ -21,8 +41,6 @@ cifar 10 contains 50K + 10K 32x32 rgb images belonging to 10 different classes (
 ```python
 # load cifar (like mnist)
 # three channels, so shape of input is (32, 32, 3)
-
-# layers.Conv2D(output_channesl, kernel_size(height, width) or just int, padding='valid'(default)/'same')
 
 model = keras.Sequential{
     [
