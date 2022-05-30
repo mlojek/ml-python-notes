@@ -1,9 +1,10 @@
-import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.datasets import cifar10
 
+
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
 
 model = keras.Sequential(
     [
@@ -25,9 +26,9 @@ model.compile(
     metrics=['accuracy'],
 )
 
-model.summary()
+
+# model.summary()
 
 model.fit(x_train, y_train, batch_size=10, epochs=40)
 
-model.evaluate(x_test, y_test)
-
+model.save('cifar-model.h5')
